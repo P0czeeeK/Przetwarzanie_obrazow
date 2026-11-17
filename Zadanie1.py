@@ -32,6 +32,14 @@ img_rotated = cv2.rotate(img_gray, cv2.ROTATE_90_CLOCKWISE)
 
 plt.figure(figsize=(5, 5))
 plt.imshow(img_rotated, cmap="gray")
-plt.title("5. Obraz po resize, grayscale i obrocie o 90°")
+plt.title("Obraz po resize, grayscale i obrocie o 90°")
 plt.axis("off")
 plt.show()
+
+print(
+    "Macierz obrazu:\n"
+)
+print(img_rotated)
+print(
+    f"\nPełne wymiary macierzy wynikowej: {img_rotated.shape} (wysokość, szerokość)"
+)
