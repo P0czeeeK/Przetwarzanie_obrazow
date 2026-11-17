@@ -1,5 +1,5 @@
 import cv2
-import matplotlib as plt
+import matplotlib.pyplot as plt
 import numpy as np
 import urllib.request
 
@@ -14,3 +14,24 @@ with urllib.request.urlopen(req_obj) as req:
 
 img = cv2.imdecode(arr, cv2.IMREAD_COLOR)
 
+img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
+plt.figure(figsize=(5, 5))
+plt.imshow(img_rgb)
+plt.title("Oryginalny obraz")
+plt.axis("off")
+plt.show()
+
+width = int(img.shape[1] * 0.5)
+height = int(img.shape[0] * 0.5)
+
+img_resized = cv2.resize(img, (width, height), interpolation=cv2.INTER_AREA)
+img_gray = cv2.cvtColor(img_resized, cv2.COLOR_BGR2GRAY)
+
+img_rotated = cv2.rotate(img_gray, cv2.ROTATE_90_CLOCKWISE)
+
+plt.figure(figsize=(5, 5))
+plt.imshow(img_rotated, cmap="gray")
+plt.title("5. Obraz po resize, grayscale i obrocie o 90°")
+plt.axis("off")
+plt.show()
