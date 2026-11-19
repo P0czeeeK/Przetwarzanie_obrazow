@@ -1,3 +1,5 @@
+#Aby przetestować różne kierunki należy zmienić url w linijce 19
+
 import cv2
 import urllib.request
 import numpy as np
@@ -6,15 +8,15 @@ from mediapipe.tasks.python import vision
 from mediapipe.tasks.python import BaseOptions
 
 url_up = "Zdjecie1.jpg"
-url_right = "https://png.pngtree.com/png-vector/20251111/ourmid/pngtree-pointing-finger-emoji-for-directional-and-interactive-designs-png-image_17915769.webp"
-url_down = "https://symbl-cdn.com/i/webp/de/952ce9340428eb56a2b23f92bff20f.webp"
-url_left = "https://assets.streamlinehq.com/image/private/w_512,h_512,ar_1/f_auto/v1/icons/4/pointing-left-emoji-sg240l8ioed4zkd4e04447.png/pointing-left-emoji-9ovxwwvyp2i4b6l4ojjo7.png?_a=DATAiZAAZAA0"
+url_right = "Zdjecie4.jpg"
+url_down = "Zdjecie2.jpg"
+url_left = "Zdjecie3.jpg"
 
 # resp = urllib.request.urlopen(url_left)
 # image = np.asarray(bytearray(resp.read()), dtype=np.uint8)
 # image = cv2.imdecode(image, cv2.IMREAD_COLOR)
 
-image = cv2.imread(url_up)
+image = cv2.imread(url_left)
 
 rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
@@ -58,7 +60,15 @@ if result.hand_landmarks:
     else:
         direction = "DOL" if dy > 0 else "GORA"
 
-    print("Kierunek: ", direction)
+    cv2.putText(
+        small_image,
+        direction,
+        (50,50),
+        cv2.FONT_HERSHEY_SIMPLEX,
+        1,
+        (255, 255, 255),
+        2
+    )
 
 else:
     print("Nie wykryto dłoni")
